@@ -1,14 +1,16 @@
 * {
-  color: darkred;
-  font-family: Chalkduster;
+  color:#2c2c2c;
+  word-spacing: 3px;
 }
 body {
-  background-color: #1b016b;
+  background-color: #d2f2ff;
+  overflow: hidden;
 }
-h2 {
+p {
   font-size: 22px;
   margin-left: 10%;
   margin-right: 10%;
+  line-height: 1.2;
 }
 h1:nth-of-type(1) {
   margin-left: 35%;
@@ -20,4 +22,41 @@ h1:nth-of-type(3) {
   margin-left: 40%;
   margin-top: 5%;
   font-size: 50px;
+}
+#progress {
+  background: linear-gradient(to right, #2200ff 0%, #9e00ff 100%);
+  border-radius:1000vmin;
+  height: 6vmin;
+  width: 0%;
+}
+#progress-bar {
+  width: 50%;
+  height: 6vmin;
+  border-radius: 10vmin;
+  border: 3px dashed #2c2c2c;
+  margin: 10vmin auto;
+  overflow: hidden;
+}
+img {
+  position: absolute;
+  width: 10%;
+  top: 54%;
+  left: 70%;
+}
+.partyPopper {
+  background-color: rgb(235, 202, 160);
+  width: 10%;
+  height: 13vmin;
+  position: absolute;
+  clip-path: polygon(0% 0%, 100% 0%, 75% 50%, 25% 50%);
+}
+.one {
+ top: 35vmin;
+ left: -10vmin;
+  transform: rotate(90deg);
+}
+.two {
+  top: 35vmin;
+  left: 95%;
+  transform: rotate(-90deg);
 }
