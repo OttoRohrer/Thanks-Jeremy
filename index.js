@@ -4,6 +4,8 @@ let lastMovement = performance.now();
 let currentImageIndex = 0;
 let lastHit = 0;
 const images = document.querySelectorAll(".icon");
+document.body.scrollLeft =
+  document.body.scrollWidth - document.body.clientWidth;
 function progressLoop() {
   progress.style.width = newWidth + "%";
   newWidth += 0.1;
@@ -25,33 +27,35 @@ function createConfetti() {
   const colors = ["red", "yellow", "blue", "lightgreen", "pink", "purple"];
   const elementList = [];
   const amountOfConfetti = 100;
-  const amountOfConfettiPerSide = (amountOfConfetti * 1) / 2;
+  const amountOfConfettiPerSide = amountOfConfetti / 2;
   for (let i = 0; i < amountOfConfetti; i++) {
     const pieceOfConfetti = document.createElement("div");
     pieceOfConfetti.classList.add("confetti-piece");
     pieceOfConfetti.style.background =
       colors[Math.floor(Math.random() * colors.length)];
-    pieceOfConfetti.style.transform = `rotate(${Math.floor(
-      Math.random() * 360
-    )}deg)`;
     pieceOfConfetti.style.left = "5vmin";
     pieceOfConfetti.style.top = "-60vmin";
-    elementList.push({
+    const confettiObject = {
       left: i >= amountOfConfettiPerSide ? 5 : 172,
       top: 40,
       xVelocity:
         i >= amountOfConfettiPerSide
           ? Math.floor(Math.random() * (10 - 1 + 1)) + 1
           : -Math.floor(Math.random() * (10 - 1 + 1)) + 1,
-      yVelocity: Math.floor(Math.random() * (10 - 1 + 1)) + 1,
+      yVelocity: -Math.floor(Math.random() * (10 - 1 + 1)) + 1,
       gravity: 1,
+      rotation: Math.floor(Math.random() * 360),
+      rotationPerFrame: Math.floor(Math.random() * 360),
       HTMLElement: pieceOfConfetti,
-    });
+    };
+    elementList.push(confettiObject);
     document.body.appendChild(pieceOfConfetti);
+
+    pieceOfConfetti.style.transform = `rotate(${confettiObject.rotation}deg)`;
   }
   moveConfetti(elementList);
 }
-
+let numMoved = 0;
 function moveConfetti(confettiList) {
   const airResistance = 3;
   if (performance.now() - lastMovement > 1000 / 60) {
@@ -68,8 +72,15 @@ function moveConfetti(confettiList) {
       confettiPiece.top +=
         confettiPiece.yVelocity + confettiPiece.gravity - airResistance;
       confettiPiece.gravity += 0.1;
+      confettiPiece.HTMLElement.style.transform = `rotate(${
+        confettiPiece.rotation + confettiPiece.rotationPerFrame
+      }deg)`;
+      confettiPiece.rotation += confettiPiece.rotationPerFrame;
       lastMovement = performance.now();
     }
+    numMoved++;
   }
-  requestAnimationFrame(() => moveConfetti(confettiList));
+  if (numMoved < 700) {
+    requestAnimationFrame(() => moveConfetti(confettiList));
+  }
 }

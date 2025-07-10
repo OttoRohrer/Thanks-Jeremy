@@ -2,9 +2,14 @@
   color:#2c2c2c;
   word-spacing: 3px;
 }
+:root {
+  --progress-bar-width: 50%;
+}
 body {
   background-color: #d2f2ff;
-  overflow: hidden;
+  background-image: url("./images/leftConfettiPooper.png"), url("./images/rightConfettiPooper.png");
+  background-repeat: no-repeat;
+  background-position: left, right;
 }
 p {
   font-size: 22px;
@@ -30,44 +35,29 @@ h1:nth-of-type(3) {
   width: 0%;
 }
 #progress-bar {
-  width: 50%;
+  width: 120%;
   height: 6vmin;
   border-radius: 10vmin;
   border: 3px dashed #2c2c2c;
-  top: 7vh;
-  left: 25vw;
   position: relative;
   overflow: hidden;
 }
-img {
-  position: relative;
-  width: 10%;
-  top: -7.5vh;
-  left: 70%;
-  z-index: 5;
-}
+
 #images {
   display: flex;
   gap: -10%;
   top: 54vh;
   position: relative;
 }
-.partyPopper {
-  background-color: rgb(235, 202, 160);
-  width: 10%;
-  height: 13vmin;
-  position: absolute;
-  clip-path: polygon(0% 0%, 100% 0%, 75% 50%, 25% 50%);
-}
+
 .one {
- top: 35vmin;
- left: -10vmin;
-  transform: rotate(90deg);
+ transform: translate(-20vmin, -40vmin);
+ position: sticky;
+ margin: 0 auto;
 }
 .two {
-  top: 35vmin;
-  left: 95%;
-  transform: rotate(-90deg);
+ transform: translate(128vmin, -40vmin) scaleX(-1);
+  position: sticky;
 }
 .confetti-piece {
   width: 1vmin;
@@ -77,9 +67,26 @@ img {
   position: absolute;
 }
 .icon {
-  top: -47.5vh ;
-  left: 25%;
-  width: 9vmin;
+  position: relative;
+  top: -47vh;
+  left: 2%;
+  width: 5%;
   aspect-ratio: 1;
   opacity: 0;
+}
+
+img {
+  width: 20%;
+  position: absolute;
+  transform: translate(450%, -14%);
+}
+
+#progress-bar-elements {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  left: 25vw;
+  top: 5vh;
+  position: relative;
+  height: 10vmin;
 }
