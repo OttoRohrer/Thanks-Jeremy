@@ -3,9 +3,9 @@ let newWidth = 0;
 let lastMovement = performance.now();
 let currentImageIndex = 0;
 let lastHit = 0;
-const amountOfConfetti = 100;
+const amountOfConfetti = 140;
 const amountOfConfettiPerSide = amountOfConfetti / 2;
-const maxXvelocity = 50;
+const maxXvelocity = 40;
 const maxYvelocity = 50;
 const minXvelocity = 1;
 const minYvelocity = 1;
@@ -39,10 +39,9 @@ function createConfetti() {
     pieceOfConfetti.classList.add("confetti-piece");
     pieceOfConfetti.style.background =
       colors[Math.floor(Math.random() * colors.length)];
-    pieceOfConfetti.style.left = "5vmin";
-    pieceOfConfetti.style.top = "-60vmin";
+
     const confettiObject = {
-      left: i >= amountOfConfettiPerSide ? 5 : 172,
+      left: i >= amountOfConfettiPerSide ? 5 : 100,
       top: 40,
       xVelocity:
         i >= amountOfConfettiPerSide
@@ -73,13 +72,13 @@ function moveConfetti(confettiList) {
     let i = 0;
     for (const confettiPiece of confettiList) {
       confettiPiece.HTMLElement.style.left =
-        confettiPiece.left + confettiPiece.xVelocity + "vmin";
+        confettiPiece.left + confettiPiece.xVelocity + "vw";
       confettiPiece.HTMLElement.style.top =
         confettiPiece.top +
         confettiPiece.yVelocity +
         confettiPiece.gravity -
         airResistance +
-        "vmin";
+        "vh";
       confettiPiece.left += confettiPiece.xVelocity;
       confettiPiece.top +=
         confettiPiece.yVelocity + confettiPiece.gravity - airResistance;
