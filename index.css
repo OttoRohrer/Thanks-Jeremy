@@ -10,6 +10,7 @@ body {
   background-image: url("./images/leftConfettiPooper.png"), url("./images/rightConfettiPooper.png");
   background-repeat: no-repeat;
   background-position: left, right;
+  overflow: hidden;
 }
 p {
   font-size: 22px;

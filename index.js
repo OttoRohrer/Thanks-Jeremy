@@ -3,6 +3,13 @@ let newWidth = 0;
 let lastMovement = performance.now();
 let currentImageIndex = 0;
 let lastHit = 0;
+const amountOfConfetti = 100;
+const amountOfConfettiPerSide = amountOfConfetti / 2;
+const maxXvelocity = 50;
+const maxYvelocity = 50;
+const minXvelocity = 1;
+const minYvelocity = 1;
+const maxRotationPerFrame = 360;
 const images = document.querySelectorAll(".icon");
 document.body.scrollLeft =
   document.body.scrollWidth - document.body.clientWidth;
@@ -26,8 +33,7 @@ requestAnimationFrame(progressLoop);
 function createConfetti() {
   const colors = ["red", "yellow", "blue", "lightgreen", "pink", "purple"];
   const elementList = [];
-  const amountOfConfetti = 100;
-  const amountOfConfettiPerSide = amountOfConfetti / 2;
+
   for (let i = 0; i < amountOfConfetti; i++) {
     const pieceOfConfetti = document.createElement("div");
     pieceOfConfetti.classList.add("confetti-piece");
@@ -40,12 +46,17 @@ function createConfetti() {
       top: 40,
       xVelocity:
         i >= amountOfConfettiPerSide
-          ? Math.floor(Math.random() * (10 - 1 + 1)) + 1
-          : -Math.floor(Math.random() * (10 - 1 + 1)) + 1,
-      yVelocity: -Math.floor(Math.random() * (10 - 1 + 1)) + 1,
+          ? Math.floor(Math.random() * (maxXvelocity - minXvelocity + 1)) +
+            minXvelocity
+          : -Math.floor(Math.random() * (maxXvelocity - 1 + 1)) + 1,
+      yVelocity:
+        -Math.floor(Math.random() * (maxYvelocity - minYvelocity + 1)) +
+        minYvelocity,
       gravity: 1,
       rotation: Math.floor(Math.random() * 360),
-      rotationPerFrame: Math.floor(Math.random() * 360),
+      rotationPerFrame: Math.floor(Math.random() * maxRotationPerFrame),
+      minXVelocity: i >= amountOfConfettiPerSide ? 2 : -2,
+      minYVelocity: 2,
       HTMLElement: pieceOfConfetti,
     };
     elementList.push(confettiObject);
@@ -57,8 +68,9 @@ function createConfetti() {
 }
 let numMoved = 0;
 function moveConfetti(confettiList) {
-  const airResistance = 3;
+  const airResistance = 5;
   if (performance.now() - lastMovement > 1000 / 60) {
+    let i = 0;
     for (const confettiPiece of confettiList) {
       confettiPiece.HTMLElement.style.left =
         confettiPiece.left + confettiPiece.xVelocity + "vmin";
@@ -76,7 +88,23 @@ function moveConfetti(confettiList) {
         confettiPiece.rotation + confettiPiece.rotationPerFrame
       }deg)`;
       confettiPiece.rotation += confettiPiece.rotationPerFrame;
+      confettiPiece.yVelocity = Math.max(
+        confettiPiece.yVelocity - airResistance,
+        confettiPiece.minYVelocity
+      );
+      if (i >= amountOfConfettiPerSide) {
+        confettiPiece.xVelocity = Math.max(
+          confettiPiece.xVelocity - airResistance,
+          confettiPiece.minXVelocity
+        );
+      } else {
+        confettiPiece.xVelocity = Math.min(
+          confettiPiece.xVelocity + airResistance,
+          confettiPiece.minXVelocity
+        );
+      }
       lastMovement = performance.now();
+      i++;
     }
     numMoved++;
   }
