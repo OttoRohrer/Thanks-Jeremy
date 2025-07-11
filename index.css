@@ -18,18 +18,18 @@ p {
   line-height: 1.2;
   margin: 0 auto;
   width: 80%;
+  margin-bottom: 0vmin;
 }
 h1:nth-of-type(1) {
-  margin-left: 35%;
-  margin: 0 auto;
-  width: 20%;
- font-size: 4vmin; 
+  width: 100%;
+  text-align: center;
+ white-space: nowrap;
 }
 h1:nth-of-type(2) {
-  margin-left: 20%;
     margin: 5vmin auto;
-  width: 50%;
-  font-size: 4vmin;
+  width: 100%;
+  text-align: center;
+ white-space: nowrap;
 }
 #progress {
   background: linear-gradient(to right, #2200ff 0%, #9e00ff 100%);
@@ -46,12 +46,6 @@ h1:nth-of-type(2) {
   overflow: hidden;
 }
 
-#images {
-  display: flex;
-  gap: -10%;
-  top: 54vh;
-  position: relative;
-}
 
 .one {
  transform: translate(-20vmin, -40vmin);
@@ -70,13 +64,18 @@ h1:nth-of-type(2) {
   position: absolute;
   display: grid;
 }
+#images {
+  display: flex;
+  position: relative;
+}
+
 .icon {
   position: relative;
-  top: -47vh;
   left: 2%;
   width: 5%;
   aspect-ratio: 1;
   opacity: 0;
+  margin-top: 5vmin;
 }
 
 img {
@@ -90,7 +89,6 @@ img {
   align-items: center;
   width: 50%;
   left: 25vw;
-  top: 5vh;
   position: relative;
   height: 10vmin;
 }

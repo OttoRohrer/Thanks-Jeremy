@@ -11,11 +11,9 @@ const minXvelocity = 1;
 const minYvelocity = 1;
 const maxRotationPerFrame = 360;
 const images = document.querySelectorAll(".icon");
-document.body.scrollLeft =
-  document.body.scrollWidth - document.body.clientWidth;
 function progressLoop() {
   progress.style.width = newWidth + "%";
-  newWidth += 1;
+  newWidth += 0.1;
   if (newWidth - lastHit >= 9 && !(currentImageIndex >= images.length)) {
     images[currentImageIndex].style.opacity = "1";
 
