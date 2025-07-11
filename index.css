@@ -62,10 +62,11 @@ h1:nth-of-type(2) {
 }
 .confetti-piece {
   width: 1vmin;
-  top: 50vmin;
+  top: 50vh;
   left: 5vmin;
   aspect-ratio: 1;
   position: absolute;
+
 }
 .icon {
   position: relative;

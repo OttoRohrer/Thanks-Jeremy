@@ -108,7 +108,11 @@ function moveConfetti(confettiList) {
     }
     numMoved++;
   }
-  if (numMoved < 700) {
+  if (numMoved < 70) {
     requestAnimationFrame(() => moveConfetti(confettiList));
+  } else {
+    for (const confettiPiece of confettiList) {
+      confettiPiece.HTMLElement.style.display = "none";
+    }
   }
 }
