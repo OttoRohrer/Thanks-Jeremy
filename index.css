@@ -10,24 +10,24 @@ body {
   background-image: url("./images/leftConfettiPooper.png"), url("./images/rightConfettiPooper.png");
   background-repeat: no-repeat;
   background-position: left, right;
-  overflow: hidden;
 }
 p {
-  font-size: 22px;
-  margin-left: 10%;
-  margin-right: 10%;
+  font-size: 2.7vmin;
   line-height: 1.2;
+  margin: 0 auto;
+  width: 80%;
 }
 h1:nth-of-type(1) {
   margin-left: 35%;
+  margin: 0 auto;
+  width: 20%;
+ font-size: 4vmin; 
 }
 h1:nth-of-type(2) {
   margin-left: 20%;
-}
-h1:nth-of-type(3) {
-  margin-left: 40%;
-  margin-top: 5%;
-  font-size: 50px;
+    margin: 5vmin auto;
+  width: 50%;
+  font-size: 4vmin;
 }
 #progress {
   background: linear-gradient(to right, #2200ff 0%, #9e00ff 100%);

@@ -15,7 +15,7 @@ document.body.scrollLeft =
   document.body.scrollWidth - document.body.clientWidth;
 function progressLoop() {
   progress.style.width = newWidth + "%";
-  newWidth += 0.1;
+  newWidth += 1;
   if (newWidth - lastHit >= 9 && !(currentImageIndex >= images.length)) {
     images[currentImageIndex].style.opacity = "1";
 
