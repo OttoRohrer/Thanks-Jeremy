@@ -68,9 +68,18 @@ function createConfetti() {
 let numMoved = 0;
 function moveConfetti(confettiList) {
   const airResistance = 5;
+
   if (performance.now() - lastMovement > 1000 / 60) {
     let i = 0;
     for (const confettiPiece of confettiList) {
+      if (
+        confettiPiece.left + confettiPiece.xVelocity - airResistance > 89.5 ||
+        confettiPiece.left + confettiPiece.xVelocity - airResistance < 0
+      ) {
+        confettiPiece.HTMLElement.style.display = "none";
+      } else {
+        confettiPiece.HTMLElement.style.display = "grid";
+      }
       confettiPiece.HTMLElement.style.left =
         confettiPiece.left + confettiPiece.xVelocity + "vw";
       confettiPiece.HTMLElement.style.top =
